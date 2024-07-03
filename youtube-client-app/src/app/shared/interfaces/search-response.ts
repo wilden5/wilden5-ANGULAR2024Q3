@@ -1,3 +1,5 @@
+import { SearchItem } from './search-item';
+
 export interface SearchResponse {
   kind: string;
   etag: string;
@@ -5,7 +7,7 @@ export interface SearchResponse {
     totalResults: number;
     resultsPerPage: number;
   };
-  items: string;
+  items: SearchItem[];
   nextPageToken: string;
   pervPageToken?: string;
 }

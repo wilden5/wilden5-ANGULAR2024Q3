@@ -6,14 +6,14 @@
       <input matInput placeholder="fun videos" />
     </mat-form-field>
     <app-custom-button>Search</app-custom-button>
-    <app-custom-button>
+    <app-custom-button (buttonClickEvent)="filterMenuClick()">
       <mat-icon>menu</mat-icon>
     </app-custom-button>
     <app-custom-button>
       <mat-icon>account_circle</mat-icon>
     </app-custom-button>
   </mat-toolbar-row>
-  <mat-toolbar-row>
+  <mat-toolbar-row *ngIf="showFilterMenu">
     <app-filter></app-filter>
   </mat-toolbar-row>
 </mat-toolbar>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -8,4 +8,10 @@ import { MatButtonModule } from '@angular/material/button';
   standalone: true,
   imports: [MatButtonModule],
 })
-export class CustomButtonComponent {}
+export class CustomButtonComponent {
+  @Output() buttonClickEvent = new EventEmitter<void>();
+
+  buttonClick(): void {
+    this.buttonClickEvent.emit();
+  }
+}
