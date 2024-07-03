@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatInputModule } from '@angular/material/input';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './core/header/header.component';
@@ -12,6 +16,7 @@ import { CreateItemComponent } from './admin/create-item/create-item.component';
 import { MainComponent } from './core/main/main.component';
 import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 import { FilterComponent } from './core/header/filter/filter.component';
+import { CustomButtonComponent } from './shared/components/custom-button/custom-button.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +31,15 @@ import { FilterComponent } from './core/header/filter/filter.component';
     PageNotFoundComponent,
     FilterComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatToolbarModule,
+    CustomButtonComponent,
+    MatIconModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
