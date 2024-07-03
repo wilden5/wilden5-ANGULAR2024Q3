@@ -8,6 +8,6 @@ export interface SearchResponse {
     resultsPerPage: number;
   };
   items: SearchItem[];
-  nextPageToken: string;
+  nextPageToken?: string;
   pervPageToken?: string;
 }

@@ -1,1 +1,21 @@
-<p>search-item works!</p>
+<div class="search-item-card" *ngIf="searchItem">
+  <mat-card>
+    <img src="{{searchItem.snippet.thumbnails.standard.url}}" alt="item-img" />
+    <div>
+      <span>
+        <mat-icon>remove_red_eye</mat-icon>
+        {{searchItem.statistics.viewCount}}
+      </span>
+      <span>
+        <mat-icon>thumb_up</mat-icon>
+        {{searchItem.statistics.likeCount}}
+      </span>
+      <span>
+        <mat-icon>comment</mat-icon>
+        {{searchItem.statistics.commentCount}}
+      </span>
+    </div>
+    <mat-card-title>{{searchItem.snippet.title}}</mat-card-title>
+    <app-custom-button>...more</app-custom-button>
+  </mat-card>
+</div>
