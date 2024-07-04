@@ -1,3 +1,38 @@
 .search-item-card {
   width: 26.4rem;
+  height: 32.7rem;
+  margin: 2.8rem;
+  display: flex;
+  align-items: center;
+  background: #e5e5e5;
+  border-radius: 0.5rem;
+  box-shadow: 0.6rem 0.6rem 0.8rem 0 rgba(34, 60, 80, 0.2);
+}
+
+.search-item-img {
+  margin: 2rem;
+  width: 22.3rem;
+  max-height: 12.3rem;
+}
+
+.search-item-stat-container {
+  display: flex;
+  gap: 1.6rem;
+}
+
+.search-item-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.search-item-title {
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 1rem;
+}
+
+.search-item-button {
+  margin-top: auto;
+  margin-bottom: 1rem;
 }

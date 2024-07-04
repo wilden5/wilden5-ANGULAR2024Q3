@@ -1,21 +1,21 @@
-<div class="search-item-card" *ngIf="searchItem">
-  <mat-card>
-    <img src="{{searchItem.snippet.thumbnails.standard.url}}" alt="item-img" />
-    <div>
-      <span>
+<ng-container *ngIf="searchItem">
+  <mat-card class="search-item-card">
+    <img class="search-item-img" src="{{searchItem.snippet.thumbnails.medium.url}}" alt="item-img" />
+    <div class="search-item-stat-container">
+      <span class="search-item-stat">
         <mat-icon>remove_red_eye</mat-icon>
         {{searchItem.statistics.viewCount}}
       </span>
-      <span>
+      <span class="search-item-stat">
         <mat-icon>thumb_up</mat-icon>
         {{searchItem.statistics.likeCount}}
       </span>
-      <span>
+      <span class="search-item-stat">
         <mat-icon>comment</mat-icon>
         {{searchItem.statistics.commentCount}}
       </span>
     </div>
-    <mat-card-title>{{searchItem.snippet.title}}</mat-card-title>
-    <app-custom-button>...more</app-custom-button>
+    <mat-card-title class="search-item-title">{{searchItem.snippet.title | slice:0:57}}</mat-card-title>
+    <app-custom-button class="search-item-button">...more</app-custom-button>
   </mat-card>
-</div>
+</ng-container>
