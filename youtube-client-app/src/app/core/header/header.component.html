@@ -3,10 +3,18 @@
     <img class="app-logo" src="assets/logo.png" alt="app-logo" />
     <mat-form-field class="search-input">
       <mat-label>Type your request</mat-label>
-      <input matInput placeholder="fun videos" />
+      <input matInput placeholder="fun videos" #inputValue />
     </mat-form-field>
-    <app-custom-button class="search-button header-button" [buttonHeightREM]="5.5">Search</app-custom-button>
-    <app-custom-button class="filter-button header-button" [buttonHeightREM]="5.5" (buttonClickEvent)="filterMenuClick()">
+    <app-custom-button
+      class="search-button header-button"
+      [buttonHeightREM]="5.5"
+      (buttonClickEvent)="searchButtonClick(inputValue.value)"
+      >Search</app-custom-button
+    >
+    <app-custom-button
+      class="filter-button header-button"
+      [buttonHeightREM]="5.5"
+      (buttonClickEvent)="filterMenuClick()">
       <mat-icon class="button-icon">menu</mat-icon>
     </app-custom-button>
     <app-custom-button class="account-button header-button" [buttonHeightREM]="5.5">

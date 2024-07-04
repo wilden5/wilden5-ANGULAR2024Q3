@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { mockSearchResponse } from '../../shared/mock';
+import { SearchService } from '../../shared/services/search.service';
 
 @Component({
   selector: 'app-search-results',
@@ -7,5 +7,5 @@ import { mockSearchResponse } from '../../shared/mock';
   styleUrls: ['./search-results.component.scss'],
 })
 export class SearchResultsComponent {
-  mockSearchResponse = mockSearchResponse;
+  constructor(protected searchService: SearchService) {}
 }
