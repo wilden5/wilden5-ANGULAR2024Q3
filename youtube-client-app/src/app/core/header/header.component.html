@@ -1,16 +1,16 @@
 <mat-toolbar>
-  <mat-toolbar-row>
+  <mat-toolbar-row class="first-toolbar-row">
     <img class="app-logo" src="assets/logo.png" alt="app-logo" />
-    <mat-form-field>
+    <mat-form-field class="search-input">
       <mat-label>Type your request</mat-label>
       <input matInput placeholder="fun videos" />
     </mat-form-field>
-    <app-custom-button>Search</app-custom-button>
-    <app-custom-button (buttonClickEvent)="filterMenuClick()">
-      <mat-icon>menu</mat-icon>
+    <app-custom-button class="search-button header-button" [buttonHeightREM]="5.5">Search</app-custom-button>
+    <app-custom-button class="filter-button header-button" [buttonHeightREM]="5.5" (buttonClickEvent)="filterMenuClick()">
+      <mat-icon class="button-icon">menu</mat-icon>
     </app-custom-button>
-    <app-custom-button>
-      <mat-icon>account_circle</mat-icon>
+    <app-custom-button class="account-button header-button" [buttonHeightREM]="5.5">
+      <mat-icon class="button-icon">account_circle</mat-icon>
     </app-custom-button>
   </mat-toolbar-row>
   <mat-toolbar-row *ngIf="showFilterMenu">
