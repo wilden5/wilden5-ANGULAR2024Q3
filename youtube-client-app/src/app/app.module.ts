@@ -18,6 +18,7 @@ import { MainComponent } from './core/main/main.component';
 import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
 import { FilterComponent } from './core/header/filter/filter.component';
 import { CustomButtonComponent } from './shared/components/custom-button/custom-button.component';
+import { FilterByKeywordPipe } from './shared/pipes/filter-by-keyword.pipe';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { CustomButtonComponent } from './shared/components/custom-button/custom-
     MainComponent,
     PageNotFoundComponent,
     FilterComponent,
+    FilterByKeywordPipe,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,7 @@ import { CustomButtonComponent } from './shared/components/custom-button/custom-
     MatIconModule,
     MatCardModule,
   ],
-  providers: [],
+  providers: [FilterByKeywordPipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
