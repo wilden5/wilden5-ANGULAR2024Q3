@@ -8,7 +8,7 @@
     <app-custom-button
       class="search-button header-button"
       [buttonHeightREM]="5.5"
-      (buttonClickEvent)="searchButtonClick(inputValue.value)"
+      (buttonClickEvent)="searchService.performSearchByValue(inputValue.value)"
       >Search</app-custom-button
     >
     <app-custom-button

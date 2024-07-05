@@ -1,6 +1,6 @@
 <div>Sorting by:</div>
-<app-custom-button>date</app-custom-button>
-<app-custom-button>count of views</app-custom-button>
+<app-custom-button (buttonClickEvent)="searchService.performSearchByDate()">date</app-custom-button>
+<app-custom-button (buttonClickEvent)="searchService.performSearchByViews()">count of views</app-custom-button>
 <mat-form-field>
   <mat-label>by word or sentence</mat-label>
   <input matInput />
