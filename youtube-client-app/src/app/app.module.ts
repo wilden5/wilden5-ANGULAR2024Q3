@@ -19,6 +19,7 @@ import { PageNotFoundComponent } from './core/page-not-found/page-not-found.comp
 import { FilterComponent } from './core/header/filter/filter.component';
 import { CustomButtonComponent } from './shared/components/custom-button/custom-button.component';
 import { FilterByKeywordPipe } from './shared/pipes/filter-by-keyword.pipe';
+import { ColoredBorderDirective } from './shared/directives/colored-border.directive';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { FilterByKeywordPipe } from './shared/pipes/filter-by-keyword.pipe';
     PageNotFoundComponent,
     FilterComponent,
     FilterByKeywordPipe,
+    ColoredBorderDirective,
   ],
   imports: [
     BrowserModule,

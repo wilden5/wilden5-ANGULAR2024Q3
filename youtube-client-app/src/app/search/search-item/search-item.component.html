@@ -17,5 +17,6 @@
     </div>
     <mat-card-title class="search-item-title">{{searchItem.snippet.title | slice:0:57}}</mat-card-title>
     <app-custom-button class="search-item-button">...more</app-custom-button>
+    <div [appColoredBorder]="searchItem.snippet.publishedAt" class="colored-border"></div>
   </mat-card>
 </ng-container>
