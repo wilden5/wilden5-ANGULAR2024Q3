@@ -8,6 +8,6 @@ import { SharedModule } from '../shared/shared.module';
 @NgModule({
   declarations: [SearchResultsComponent, CreateItemComponent, FilterComponent],
   imports: [CommonModule, SharedModule],
-  exports: [SearchResultsComponent],
+  exports: [SearchResultsComponent, FilterComponent],
 })
 export class YoutubeModule {}
