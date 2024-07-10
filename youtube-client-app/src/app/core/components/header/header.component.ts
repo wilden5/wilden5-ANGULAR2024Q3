@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SearchService } from '../../../youtube/services/search.service';
+import { FilterService } from '../../../youtube/services/filter.service';
 
 @Component({
   selector: 'app-header',
@@ -7,11 +8,8 @@ import { SearchService } from '../../../youtube/services/search.service';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  showFilterMenu: boolean = false;
-
-  constructor(protected searchService: SearchService) {}
-
-  filterMenuClick(): void {
-    this.showFilterMenu = !this.showFilterMenu;
-  }
+  constructor(
+    protected searchService: SearchService,
+    protected filterService: FilterService
+  ) {}
 }
