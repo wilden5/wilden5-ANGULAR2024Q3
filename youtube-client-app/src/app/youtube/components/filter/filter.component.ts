@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SearchService } from '../../../shared/services/search.service';
+import { SearchService } from '../../services/search.service';
 
 @Component({
   selector: 'app-filter',

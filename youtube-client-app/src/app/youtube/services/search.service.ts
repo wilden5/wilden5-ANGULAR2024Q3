@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { map, Observable, of } from 'rxjs';
-import { SearchItem } from '../interfaces/search-item';
-import { mockSearchResponse } from '../mock';
-import { FilterByKeywordPipe } from '../pipes/filter-by-keyword.pipe';
+import { SearchItem } from '../../shared/interfaces/search-item';
+import { mockSearchResponse } from '../../shared/mock';
+import { FilterByKeywordPipe } from '../../shared/pipes/filter-by-keyword.pipe';
 
 @Injectable({
   providedIn: 'root',
