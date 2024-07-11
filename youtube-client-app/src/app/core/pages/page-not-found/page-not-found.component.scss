@@ -1,0 +1,16 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  height:50vh;
+  overflow: hidden;
+}
+
+.error-message {
+  font-family: Roboto, serif;
+  font-weight: 700;
+  font-size: 2.4rem;
+  line-height: 2.8rem;
+  color: #828282;
+}
