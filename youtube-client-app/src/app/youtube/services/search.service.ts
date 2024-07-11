@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { map, Observable, of } from 'rxjs';
-import { SearchItem } from '../../shared/interfaces/search-item';
+import { SearchItem } from '../../shared/models/search-item';
 import { mockSearchResponse } from '../../shared/mock';
 import { FilterByKeywordPipe } from '../../shared/pipes/filter-by-keyword.pipe';
 

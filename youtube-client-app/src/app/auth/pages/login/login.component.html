@@ -2,14 +2,14 @@
   <h2 class="form-header">Login:</h2>
   <mat-form-field class="username-input">
     <mat-label>Your Login</mat-label>
-    <input matInput />
+    <input required matInput #username />
   </mat-form-field>
   <mat-form-field class="password-input">
     <mat-label>Your Password</mat-label>
-    <input matInput />
+    <input required matInput #password />
   </mat-form-field>
   <div class="form-buttons">
-    <app-custom-button>Login</app-custom-button>
+    <app-custom-button (buttonClickEvent)="onLoginClick(username.value, password.value)">Login</app-custom-button>
     <app-custom-button>Registration</app-custom-button>
   </div>
 </form>
