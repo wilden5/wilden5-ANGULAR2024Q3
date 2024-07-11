@@ -6,6 +6,7 @@ import { PageNotFoundComponent } from './core/pages/page-not-found/page-not-foun
 const routes: Routes = [
   { path: '', component: MainComponent },
   { path: 'search', loadChildren: () => import('./youtube/youtube.module').then((m) => m.YoutubeModule) },
+  { path: 'auth', loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule) },
   { path: '**', component: PageNotFoundComponent },
 ];
 

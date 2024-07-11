@@ -17,13 +17,9 @@ export class SearchService {
 
   searchByViewsAscending = false;
 
-  constructor(
-    private filterByKeywordPipe: FilterByKeywordPipe,
-    private router: Router
-  ) {}
+  constructor(private filterByKeywordPipe: FilterByKeywordPipe) {}
 
   performSearchByValue(value: string): Observable<SearchItem[]> {
-    this.router.navigate(['/search']);
     this.searchItems = of(
       mockSearchResponse.items.filter((item) => item.snippet.title.toLowerCase().includes(value.toLowerCase()))
     );
