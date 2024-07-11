@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { map, Observable, of } from 'rxjs';
+import { Router } from '@angular/router';
 import { SearchItem } from '../../shared/interfaces/search-item';
 import { mockSearchResponse } from '../../shared/mock';
 import { FilterByKeywordPipe } from '../../shared/pipes/filter-by-keyword.pipe';
@@ -16,9 +17,13 @@ export class SearchService {
 
   searchByViewsAscending = false;
 
-  constructor(private filterByKeywordPipe: FilterByKeywordPipe) {}
+  constructor(
+    private filterByKeywordPipe: FilterByKeywordPipe,
+    private router: Router
+  ) {}
 
   performSearchByValue(value: string): Observable<SearchItem[]> {
+    this.router.navigate(['/search']);
     this.searchItems = of(
       mockSearchResponse.items.filter((item) => item.snippet.title.toLowerCase().includes(value.toLowerCase()))
     );
