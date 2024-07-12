@@ -1,6 +1,6 @@
 <ng-container *ngIf="searchItem | async as searchItem">
   <div class="item-detailed-information">
-    <app-custom-button class="back-button">
+    <app-custom-button [routerLink]="['/search']" class="back-button">
       <mat-icon>arrow_back</mat-icon>
     </app-custom-button>
     <img class="item-image" src="{{searchItem.snippet.thumbnails.high.url}}" alt="item-image" />
@@ -27,6 +27,7 @@
           {{searchItem.statistics.commentCount}}
         </span>
       </div>
+      <div [appColoredBorder]="searchItem.snippet.publishedAt" class="colored-border"></div>
     </div>
   </div>
 </ng-container>
