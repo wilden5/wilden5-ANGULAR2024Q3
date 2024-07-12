@@ -56,4 +56,8 @@ export class SearchService {
   performFilterByKeyword(searchQuery: string): Observable<SearchItem[]> {
     return (this.filteredSearchItems = this.filterByKeywordPipe.transform(this.searchItems, searchQuery));
   }
+
+  selectItemById(id: string): Observable<SearchItem> {
+    return this.searchItems.pipe(map((result) => result.find((item) => item.id === id))) as Observable<SearchItem>;
+  }
 }

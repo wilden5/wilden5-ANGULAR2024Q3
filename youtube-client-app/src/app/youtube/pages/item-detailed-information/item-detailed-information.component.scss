@@ -1,0 +1,73 @@
+:host {
+  display: flex;
+  justify-content: center;
+}
+
+.item-header {
+  display: flex;
+  padding-top: 3.5rem;
+  align-items: center;
+  gap: 4rem;
+}
+
+.item-title {
+  font-size: 2.4rem;
+  width: 65%;
+  margin-bottom: 0;
+}
+
+.item-date {
+  margin-right: 3.5rem;
+  color: #828282;
+  width: 35%;
+}
+
+.back-button {
+}
+
+.item-detailed-information {
+  display: flex;
+  flex-direction: row;
+  width: 120rem;
+  margin-top: 4.4rem;
+}
+
+.item-description {
+  margin-right: 3.5rem;
+  margin-top: 6rem;
+}
+
+.item-image {
+  width: 73rem;
+}
+
+.content-wrapper {
+  background-color: #E5E5E5;
+  width: 43.6rem;
+  padding-left: 3.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.description-header {
+  margin: 0;
+}
+
+.full-description {
+  color: #828282;
+  line-height: 1.4rem;
+}
+
+.search-item-stat-container {
+  display: flex;
+  gap: 1.6rem;
+  margin-top: auto;
+  justify-content: center;
+  padding-bottom: 3rem;
+}
+
+.search-item-stat {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}

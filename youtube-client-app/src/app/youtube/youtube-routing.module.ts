@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SearchResultsComponent } from './pages/search-results/search-results.component';
 import { authGuard } from '../core/guards/auth.guard';
+import { ItemDetailedInformationComponent } from './pages/item-detailed-information/item-detailed-information.component';
 
 const routes: Routes = [
   {
@@ -9,6 +10,7 @@ const routes: Routes = [
     component: SearchResultsComponent,
     canActivate: [authGuard],
   },
+  { path: 'item/:id', component: ItemDetailedInformationComponent, canActivate: [authGuard] },
 ];
 
 @NgModule({
