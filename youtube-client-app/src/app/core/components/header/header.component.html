@@ -20,8 +20,18 @@
       (buttonClickEvent)="filterService.toggleFilterPanel()">
       <mat-icon class="button-icon">menu</mat-icon>
     </app-custom-button>
-    <app-custom-button [routerLink]="['/auth']" class="account-button header-button" [buttonHeightREM]="5.5">
+    <app-custom-button
+      *ngIf="!loginService.isLoggedIn()"
+      [routerLink]="['/auth']"
+      class="account-button header-button"
+      [buttonHeightREM]="5.5">
       <mat-icon class="button-icon">account_circle</mat-icon>
+    </app-custom-button>
+    <app-custom-button
+      (buttonClickEvent)="loginService.logout()"
+      *ngIf="loginService.isLoggedIn()"
+      [buttonHeightREM]="5.5">
+      <mat-icon class="button-icon">logout</mat-icon>
     </app-custom-button>
   </mat-toolbar-row>
 </mat-toolbar>

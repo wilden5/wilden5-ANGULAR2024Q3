@@ -6,18 +6,24 @@ import { User } from '../models/user';
   providedIn: 'root',
 })
 export class LoginService {
+  protected isUserLoggedIn: boolean = false;
+
   constructor(private router: Router) {}
 
-  // eslint-disable-next-line class-methods-use-this
   isLoggedIn(): boolean {
     return !!localStorage.getItem('auth');
   }
 
-  // eslint-disable-next-line class-methods-use-this
   login(user: User): void {
     if (user.username && user.password) {
+      this.isUserLoggedIn = true;
       localStorage.setItem('auth', JSON.stringify(user));
       this.router.navigate(['/']);
     }
+  }
+
+  logout(): void {
+    localStorage.removeItem('auth');
+    this.router.navigate(['/auth']);
   }
 }
