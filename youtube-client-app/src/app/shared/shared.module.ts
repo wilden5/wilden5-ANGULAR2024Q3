@@ -9,9 +9,10 @@ import { SearchItemComponent } from './components/search-item/search-item.compon
 import { ColoredBorderDirective } from './directives/colored-border.directive';
 import { FilterByKeywordPipe } from './pipes/filter-by-keyword.pipe';
 import { CustomButtonComponent } from './components/custom-button/custom-button.component';
+import { DropShadowDirective } from './directives/drop-shadow.directive';
 
 @NgModule({
-  declarations: [SearchItemComponent, ColoredBorderDirective, FilterByKeywordPipe],
+  declarations: [SearchItemComponent, ColoredBorderDirective, FilterByKeywordPipe, DropShadowDirective],
   imports: [
     CommonModule,
     MatInputModule,
@@ -30,6 +31,7 @@ import { CustomButtonComponent } from './components/custom-button/custom-button.
     MatIconModule,
     MatCardModule,
     CustomButtonComponent,
+    DropShadowDirective,
   ],
   providers: [FilterByKeywordPipe],
 })

@@ -1,8 +1,8 @@
 <ng-container *ngIf="searchItem | async as searchItem">
-  <div class="item-detailed-information">
-    <app-custom-button [routerLink]="['/search']" class="back-button">
+  <div [appDropShadow]="searchItem.snippet.publishedAt" class="item-detailed-information">
+    <button [routerLink]="['/search']" [appColoredBorder]="searchItem.snippet.publishedAt" class="back-button">
       <mat-icon>arrow_back</mat-icon>
-    </app-custom-button>
+    </button>
     <img class="item-image" src="{{searchItem.snippet.thumbnails.high.url}}" alt="item-image" />
     <div class="content-wrapper">
       <div class="item-header">

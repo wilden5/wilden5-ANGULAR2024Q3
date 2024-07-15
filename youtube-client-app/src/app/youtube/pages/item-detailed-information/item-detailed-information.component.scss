@@ -24,6 +24,15 @@
 }
 
 .back-button {
+  height: 3.2rem;
+  border: none;
+  border-bottom-left-radius: 0.5rem;
+  border-top-left-radius: 0.5rem;
+  color: #ffffff;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .item-detailed-information {
