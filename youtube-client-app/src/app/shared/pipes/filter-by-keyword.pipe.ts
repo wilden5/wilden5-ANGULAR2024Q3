@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { SearchItem } from '../models/search-item';
+import { SearchItem } from '../../youtube/models/search-item';
 
 @Pipe({
   name: 'filterByKeyword',
