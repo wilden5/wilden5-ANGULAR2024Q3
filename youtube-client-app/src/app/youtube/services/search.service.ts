@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { map, Observable, of } from 'rxjs';
+import { BehaviorSubject, map, Observable, of, tap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { SearchItem } from '../models/search-item';
 import { mockSearchResponse } from '../../shared/mock';
 import { FilterByKeywordPipe } from '../../shared/pipes/filter-by-keyword.pipe';
+import { SearchResponse } from '../models/search-response';
 
 @Injectable({
   providedIn: 'root',
@@ -16,13 +18,29 @@ export class SearchService {
 
   searchByViewsAscending = false;
 
-  constructor(private filterByKeywordPipe: FilterByKeywordPipe) {}
+  searchQuery: BehaviorSubject<string> = new BehaviorSubject<string>('');
+
+  constructor(
+    private http: HttpClient,
+    private filterByKeywordPipe: FilterByKeywordPipe
+  ) {}
 
   performSearchByValue(value: string): Observable<SearchItem[]> {
     this.searchItems = of(
       mockSearchResponse.items.filter((item) => item.snippet.title.toLowerCase().includes(value.toLowerCase()))
     );
     return (this.filteredSearchItems = this.searchItems);
+  }
+
+  performSearchByValueYoutube(value: string): Observable<SearchItem[]> {
+    return this.http.get<SearchResponse>(`search?maxResults=20&q=${value}`).pipe(
+      map((response) => response.items),
+      tap((data) => {
+        console.log('im here in tap');
+        console.log(data);
+        // add method for retrieving of data for specific  youtube video
+      })
+    );
   }
 
   performSortByDate(): Observable<SearchItem[]> {

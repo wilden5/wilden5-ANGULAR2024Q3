@@ -5,6 +5,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { RouterLink } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 import { SearchItemComponent } from './components/search-item/search-item.component';
 import { ColoredBorderDirective } from './directives/colored-border.directive';
 import { FilterByKeywordPipe } from './pipes/filter-by-keyword.pipe';
@@ -21,6 +22,7 @@ import { DropShadowDirective } from './directives/drop-shadow.directive';
     MatCardModule,
     CustomButtonComponent,
     RouterLink,
+    HttpClientModule,
   ],
   exports: [
     SearchItemComponent,
@@ -32,6 +34,7 @@ import { DropShadowDirective } from './directives/drop-shadow.directive';
     MatCardModule,
     CustomButtonComponent,
     DropShadowDirective,
+    HttpClientModule,
   ],
   providers: [FilterByKeywordPipe],
 })
