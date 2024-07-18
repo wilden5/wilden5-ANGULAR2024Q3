@@ -1,4 +1,4 @@
-<app-filter *ngIf="filterService.showFilterMenu"></app-filter>
+<app-filter *ngIf="filterService.isFilterMenu"></app-filter>
 <ng-container *ngFor="let searchItem of searchService.filteredSearchItems | async">
   <app-search-item [searchItem]="searchItem"></app-search-item>
 </ng-container>
