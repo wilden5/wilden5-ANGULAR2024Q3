@@ -26,5 +26,6 @@
       [buttonHeightREM]="5.5">
       <mat-icon class="button-icon">logout</mat-icon>
     </app-custom-button>
+    <span class="login-status">Your Login Status: {{loginService.isUserLoggedIn | async}}</span>
   </mat-toolbar-row>
 </mat-toolbar>

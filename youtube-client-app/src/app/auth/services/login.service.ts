@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  protected isUserLoggedIn: boolean = false;
+  isUserLoggedIn = new BehaviorSubject<boolean>(!!localStorage.getItem('auth'));
 
   constructor(private router: Router) {}
 
@@ -16,14 +17,15 @@ export class LoginService {
 
   login(user: User): void {
     if (user.username && user.password) {
-      this.isUserLoggedIn = true;
       localStorage.setItem('auth', JSON.stringify(user));
       this.router.navigate(['/']);
+      this.isUserLoggedIn.next(true);
     }
   }
 
   logout(): void {
     localStorage.removeItem('auth');
     this.router.navigate(['/auth']);
+    this.isUserLoggedIn.next(false);
   }
 }
