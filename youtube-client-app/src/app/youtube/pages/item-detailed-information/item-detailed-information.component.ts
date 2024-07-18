@@ -19,6 +19,6 @@ export class ItemDetailedInformationComponent implements OnInit {
 
   ngOnInit(): void {
     const itemId = this.activatedRoute.snapshot.params['id'];
-    this.searchItem = this.searchService.selectItemById(itemId);
+    this.searchItem = this.searchService.getSpecificYoutubeItemById(itemId);
   }
 }

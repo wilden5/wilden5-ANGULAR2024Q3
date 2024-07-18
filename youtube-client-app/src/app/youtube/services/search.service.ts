@@ -49,6 +49,15 @@ export class SearchService {
     );
   }
 
+  getSpecificYoutubeItemById(id: string): Observable<SearchItem> {
+    return this.http.get<SearchResponse>(`videos?part=snippet,statistics&id=${id}`).pipe(
+      map((response) => response.items[0]),
+      catchError((error) => {
+        return throwError(() => error);
+      })
+    );
+  }
+
   performSortByDate(): Observable<SearchItem[]> {
     this.searchByDateAscending = !this.searchByDateAscending;
     if (this.searchByDateAscending) {
@@ -81,6 +90,7 @@ export class SearchService {
     return (this.filteredSearchItems = this.filterByKeywordPipe.transform(this.searchItems, searchQuery));
   }
 
+  // currently is not in use
   selectItemById(id: string): Observable<SearchItem> {
     return this.searchItems.pipe(map((result) => result.find((item) => item.id === id))) as Observable<SearchItem>;
   }
