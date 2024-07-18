@@ -22,8 +22,8 @@ export class SearchResultsComponent implements OnInit {
         takeUntilDestroyed(this.destroyRef),
         filter((value) => value.length > 2),
         debounceTime(1000),
-        switchMap((value) => this.searchService.performSearchByValueYoutube(value))
+        switchMap((value) => this.searchService.performSearchByValue(value))
       )
-      .subscribe((value) => console.log(value));
+      .subscribe();
   }
 }

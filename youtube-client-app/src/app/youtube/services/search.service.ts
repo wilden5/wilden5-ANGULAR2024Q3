@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable, of, tap } from 'rxjs';
+import { BehaviorSubject, catchError, concatMap, map, Observable, of, tap, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { SearchItem } from '../models/search-item';
-import { mockSearchResponse } from '../../shared/mock';
 import { FilterByKeywordPipe } from '../../shared/pipes/filter-by-keyword.pipe';
 import { SearchResponse } from '../models/search-response';
 
@@ -26,19 +25,26 @@ export class SearchService {
   ) {}
 
   performSearchByValue(value: string): Observable<SearchItem[]> {
-    this.searchItems = of(
-      mockSearchResponse.items.filter((item) => item.snippet.title.toLowerCase().includes(value.toLowerCase()))
+    return this.http.get<SearchResponse>(`search?maxResults=20&q=${value}`).pipe(
+      concatMap((response) => {
+        const videoIds = response.items.map((item) => (item.id as { videoId: string }).videoId).join(',');
+        return this.getYoutubeItemsByIds(videoIds);
+      }),
+      tap((data) => {
+        this.searchItems = of(data);
+        this.filteredSearchItems = this.searchItems;
+      }),
+      catchError((error) => {
+        return throwError(() => error);
+      })
     );
-    return (this.filteredSearchItems = this.searchItems);
   }
 
-  performSearchByValueYoutube(value: string): Observable<SearchItem[]> {
-    return this.http.get<SearchResponse>(`search?maxResults=20&q=${value}`).pipe(
+  getYoutubeItemsByIds(ids: string): Observable<SearchItem[]> {
+    return this.http.get<SearchResponse>(`videos?part=snippet,statistics&id=${ids}`).pipe(
       map((response) => response.items),
-      tap((data) => {
-        console.log('im here in tap');
-        console.log(data);
-        // add method for retrieving of data for specific  youtube video
+      catchError((error) => {
+        return throwError(() => error);
       })
     );
   }
