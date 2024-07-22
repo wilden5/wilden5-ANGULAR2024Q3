@@ -14,7 +14,7 @@
     >
   </mat-form-field>
   <div class="form-buttons">
-    <app-custom-button (buttonClickEvent)="onLoginClick()">Login</app-custom-button>
+    <app-custom-button (buttonClickEvent)="onLoginClick()" [disabled]="loginForm.invalid">Login</app-custom-button>
     <app-custom-button>Registration</app-custom-button>
   </div>
 </form>
