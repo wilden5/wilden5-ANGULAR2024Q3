@@ -3,28 +3,38 @@
   <mat-form-field>
     <mat-label>Title</mat-label>
     <input matInput formControlName="title" />
+    <mat-error>{{ getTitleErrorMessage() }}</mat-error>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Description</mat-label>
     <input matInput formControlName="description" />
+    <mat-error *ngIf="createItemForm.get('description')?.invalid">The description is too long</mat-error>
   </mat-form-field>
   <mat-form-field>
     <mat-label>Image Link</mat-label>
-    <input matInput formControlName="imageLink" />
+    <input type="url" matInput formControlName="imageLink" />
+    <mat-error *ngIf="createItemForm.get('imageLink')?.hasError('required')"
+      >Please enter a link to the image</mat-error
+    >
   </mat-form-field>
   <mat-form-field>
     <mat-label>Video Link</mat-label>
-    <input matInput formControlName="videoLink" />
+    <input type="url" matInput formControlName="videoLink" />
+    <mat-error *ngIf="createItemForm.get('videoLink')?.hasError('required')"
+      >Please enter a link to the video</mat-error
+    >
   </mat-form-field>
   <mat-form-field>
     <mat-label>Creation Date</mat-label>
-    <input matInput formControlName="creationDate" />
+    <input type="date" matInput formControlName="creationDate" />
+    <mat-error>{{getDateErrorMessage()}}</mat-error>
   </mat-form-field>
   <div class="tags-wrapper" formArrayName="tags">
     <div class="tag-list" *ngFor="let control of tags.controls; let i = index">
       <mat-form-field class="tag">
         <mat-label>Tag {{i + 1}}</mat-label>
         <input matInput type="text" [formControlName]="i" />
+        <mat-error *ngIf="control?.invalid">Please enter a tag</mat-error>
       </mat-form-field>
     </div>
   </div>
