@@ -1,1 +1,46 @@
-<p>create-item works!</p>
+<form class="create-item-form" [formGroup]="createItemForm">
+  <h2 class="form-header">Create new card</h2>
+  <mat-form-field>
+    <mat-label>Title</mat-label>
+    <input matInput formControlName="title" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <input matInput formControlName="description" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Image Link</mat-label>
+    <input matInput formControlName="imageLink" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Video Link</mat-label>
+    <input matInput formControlName="videoLink" />
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Creation Date</mat-label>
+    <input matInput formControlName="creationDate" />
+  </mat-form-field>
+  <div class="tags-wrapper" formArrayName="tags">
+    <div class="tag-list" *ngFor="let control of tags.controls; let i = index">
+      <mat-form-field class="tag">
+        <mat-label>Tag {{i + 1}}</mat-label>
+        <input matInput type="text" [formControlName]="i" />
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="form-buttons">
+    <app-custom-button (buttonClickEvent)="onAddTag()" [buttonHeightREM]="4" [disabled]="tags.length === 5"
+      >Add Tag</app-custom-button
+    >
+    <app-custom-button
+      class="reset-button"
+      (buttonClickEvent)="onFormSubmit()"
+      [buttonHeightREM]="4"
+      [disabled]="createItemForm.invalid"
+      >Submit Form</app-custom-button
+    >
+    <app-custom-button class="reset-button" (buttonClickEvent)="onFormReset()" [buttonHeightREM]="4"
+      >Reset Form</app-custom-button
+    >
+  </div>
+</form>
