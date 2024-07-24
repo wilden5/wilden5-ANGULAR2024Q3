@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { dateValidator } from '../../validators/date.validator';
+import { SearchService } from '../../services/search.service';
+import { createNewCustomItem } from '../../../utils/create-item-helper';
 
 @Component({
   selector: 'app-create-item',
@@ -17,7 +19,10 @@ export class CreateItemComponent {
     tags: this.fb.array([this.fb.control('', Validators.required)]),
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private searchService: SearchService
+  ) {}
 
   get tags(): FormArray {
     return this.createItemForm.get('tags') as FormArray;
@@ -29,7 +34,10 @@ export class CreateItemComponent {
     this.tags.push(this.fb.control('', Validators.required));
   }
 
-  onFormSubmit(): void {}
+  onFormSubmit(): void {
+    const item = createNewCustomItem(this.createItemForm);
+    console.log(item);
+  }
 
   onAddTag(): void {
     if (this.tags.length < 5) {
