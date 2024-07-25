@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
-import { SearchItem } from '../models/search-item';
 import { FilterByKeywordPipe } from '../../shared/pipes/filter-by-keyword.pipe';
 import { SearchService } from './search.service';
 
@@ -23,7 +21,7 @@ export class FilterService {
     this.isFilterMenu = !this.isFilterMenu;
   }
 
-  performFilterByDate(): Observable<SearchItem[]> {
+  /* performFilterByDate(): Observable<SearchItem[]> {
     this.isFilterByDateAscending = !this.isFilterByDateAscending;
     if (this.isFilterByDateAscending) {
       return (this.searchService.filteredSearchItems = this.searchService.filteredSearchItems.pipe(
@@ -56,5 +54,5 @@ export class FilterService {
       this.searchService.searchItems,
       searchQuery
     ));
-  }
+  } */
 }

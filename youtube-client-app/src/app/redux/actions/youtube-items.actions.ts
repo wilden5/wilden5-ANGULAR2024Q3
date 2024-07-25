@@ -2,7 +2,7 @@ import { createAction, props } from '@ngrx/store';
 import { SearchItem } from '../../youtube/models/search-item';
 
 export const SEARCH_YOUTUBE_ITEMS_BY_QUERY = createAction(
-  '[YOUTUBE] Get Youtube Items By Query',
+  '[YOUTUBE] Search Youtube Items By Query',
   props<{ searchQuery: string }>()
 );
 

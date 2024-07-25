@@ -1,8 +1,11 @@
 import { Component, DestroyRef, OnInit } from '@angular/core';
-import { debounceTime, filter, switchMap } from 'rxjs';
+import { debounceTime, filter } from 'rxjs';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Store } from '@ngrx/store';
 import { SearchService } from '../../services/search.service';
 import { FilterService } from '../../services/filter.service';
+import { SEARCH_YOUTUBE_ITEMS_BY_QUERY } from '../../../redux/actions/youtube-items.actions';
+import { selectAllItems } from '../../../redux/selectors/items.selector';
 
 @Component({
   selector: 'app-search-results',
@@ -10,10 +13,13 @@ import { FilterService } from '../../services/filter.service';
   styleUrls: ['./search-results.component.scss'],
 })
 export class SearchResultsComponent implements OnInit {
+  protected readonly selectAllItems = selectAllItems;
+
   constructor(
     protected searchService: SearchService,
     protected filterService: FilterService,
-    private destroyRef: DestroyRef
+    private destroyRef: DestroyRef,
+    protected store: Store
   ) {}
 
   ngOnInit(): void {
@@ -21,9 +27,10 @@ export class SearchResultsComponent implements OnInit {
       .pipe(
         takeUntilDestroyed(this.destroyRef),
         filter((value) => value.length > 2),
-        debounceTime(1000),
-        switchMap((value) => this.searchService.performSearchByValue(value))
+        debounceTime(1000)
       )
-      .subscribe();
+      .subscribe((searchQuery) => {
+        this.store.dispatch(SEARCH_YOUTUBE_ITEMS_BY_QUERY({ searchQuery }));
+      });
   }
 }
