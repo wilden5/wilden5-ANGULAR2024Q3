@@ -1,6 +1,16 @@
 import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { first, Observable } from 'rxjs';
+import { SearchItem } from '../models/search-item';
+import {
+  selectYoutubeItemsSortedByDateAsc,
+  selectYoutubeItemsSortedByDateDesc,
+  selectYoutubeItemsSortedByViewCountAsc,
+  selectYoutubeItemsSortedByViewCountDesc,
+} from '../../redux/selectors/youtube-items.selector';
+import { SORT_YOUTUBE_ITEMS } from '../../redux/actions/youtube-items.actions';
+import { selectAllItems } from '../../redux/selectors/items.selector';
 import { FilterByKeywordPipe } from '../../shared/pipes/filter-by-keyword.pipe';
-import { SearchService } from './search.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,8 +22,10 @@ export class FilterService {
 
   isFilterByViewsAscending = false;
 
+  filteredItems?: Observable<SearchItem[]> = this.store.select(selectAllItems);
+
   constructor(
-    private searchService: SearchService,
+    private store: Store,
     private filterByKeywordPipe: FilterByKeywordPipe
   ) {}
 
@@ -21,38 +33,33 @@ export class FilterService {
     this.isFilterMenu = !this.isFilterMenu;
   }
 
-  /* performFilterByDate(): Observable<SearchItem[]> {
+  performFilterByDate(): void {
     this.isFilterByDateAscending = !this.isFilterByDateAscending;
     if (this.isFilterByDateAscending) {
-      return (this.searchService.filteredSearchItems = this.searchService.filteredSearchItems.pipe(
-        map((result) =>
-          result.sort((a, b) => new Date(a.snippet.publishedAt).getTime() - new Date(b.snippet.publishedAt).getTime())
-        )
-      ));
+      this.filteredItems = this.store.select(selectYoutubeItemsSortedByDateAsc);
+    } else {
+      this.filteredItems = this.store.select(selectYoutubeItemsSortedByDateDesc);
     }
-    return (this.searchService.filteredSearchItems = this.searchService.filteredSearchItems.pipe(
-      map((result) =>
-        result.sort((a, b) => new Date(b.snippet.publishedAt).getTime() - new Date(a.snippet.publishedAt).getTime())
-      )
-    ));
+
+    this.filteredItems.pipe(first()).subscribe((filteredStore) => {
+      this.store.dispatch(SORT_YOUTUBE_ITEMS({ youtubeItems: filteredStore }));
+    });
   }
 
-  performFilterByViews(): Observable<SearchItem[]> {
+  performFilterByViews(): void {
     this.isFilterByViewsAscending = !this.isFilterByViewsAscending;
     if (this.isFilterByViewsAscending) {
-      return (this.searchService.filteredSearchItems = this.searchService.filteredSearchItems.pipe(
-        map((result) => result.sort((a, b) => Number(a.statistics.viewCount) - Number(b.statistics.viewCount)))
-      ));
+      this.filteredItems = this.store.select(selectYoutubeItemsSortedByViewCountAsc);
+    } else {
+      this.filteredItems = this.store.select(selectYoutubeItemsSortedByViewCountDesc);
     }
-    return (this.searchService.filteredSearchItems = this.searchService.filteredSearchItems.pipe(
-      map((result) => result.sort((a, b) => Number(b.statistics.viewCount) - Number(a.statistics.viewCount)))
-    ));
+
+    this.filteredItems.pipe(first()).subscribe((filteredStore) => {
+      this.store.dispatch(SORT_YOUTUBE_ITEMS({ youtubeItems: filteredStore }));
+    });
   }
 
   performFilterByKeyword(searchQuery: string): Observable<SearchItem[]> {
-    return (this.searchService.filteredSearchItems = this.filterByKeywordPipe.transform(
-      this.searchService.searchItems,
-      searchQuery
-    ));
-  } */
+    return (this.filteredItems = this.filterByKeywordPipe.transform(this.store.select(selectAllItems), searchQuery));
+  }
 }
