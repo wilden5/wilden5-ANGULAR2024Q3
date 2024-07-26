@@ -22,7 +22,7 @@ export class FilterService {
 
   isFilterByViewsAscending = false;
 
-  filteredItems?: Observable<SearchItem[]> = this.store.select(selectAllItems);
+  filteredItems?: Observable<SearchItem[]>;
 
   constructor(
     private store: Store,

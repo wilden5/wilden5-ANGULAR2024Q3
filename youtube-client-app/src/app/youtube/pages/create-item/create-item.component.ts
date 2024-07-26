@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { Router } from '@angular/router';
 import { dateValidator } from '../../validators/date.validator';
-import { SearchService } from '../../services/search.service';
 import { createNewCustomItem } from '../../../utils/create-item-helper';
+import { ADD_CUSTOM_ITEM } from '../../../redux/actions/custom-items.actions';
 
 @Component({
   selector: 'app-create-item',
@@ -21,7 +23,8 @@ export class CreateItemComponent {
 
   constructor(
     private fb: FormBuilder,
-    private searchService: SearchService
+    private store: Store,
+    private router: Router
   ) {}
 
   get tags(): FormArray {
@@ -35,8 +38,9 @@ export class CreateItemComponent {
   }
 
   onFormSubmit(): void {
-    const item = createNewCustomItem(this.createItemForm);
-    console.log(item);
+    const customItem = createNewCustomItem(this.createItemForm);
+    this.store.dispatch(ADD_CUSTOM_ITEM({ customItem }));
+    this.router.navigate(['/search']);
   }
 
   onAddTag(): void {
