@@ -16,7 +16,15 @@
       </span>
     </div>
     <mat-card-title class="search-item-title">{{searchItem.snippet.title | slice:0:50}}</mat-card-title>
-    <app-custom-button [routerLink]="['item/', searchItem.id]" class="search-item-button">...more</app-custom-button>
+    <div class="item-buttons">
+      <app-custom-button [routerLink]="['item/', searchItem.id]" class="search-item-button">...more</app-custom-button>
+      <app-custom-button
+        *ngIf="searchItem.isCustom"
+        (buttonClickEvent)="onDeleteCustomItem(searchItem)"
+        class="delete-button">
+        <mat-icon>delete_forever</mat-icon>
+      </app-custom-button>
+    </div>
     <div [appColoredBorder]="searchItem.snippet.publishedAt" class="colored-border"></div>
   </mat-card>
 </ng-container>

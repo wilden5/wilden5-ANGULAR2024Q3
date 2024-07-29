@@ -3,6 +3,7 @@ import { SearchItem } from '../youtube/models/search-item';
 
 export function createNewCustomItem(formGroup: FormGroup): SearchItem {
   return {
+    isCustom: true,
     etag: 'custom-item-etag',
     id: `custom-id-${String(Math.floor(Math.random() * 9000))}`,
     kind: 'youtube#video',

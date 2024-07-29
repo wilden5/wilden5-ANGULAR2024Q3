@@ -1,7 +1,7 @@
 import { createReducer, on } from '@ngrx/store';
 import { AppState } from '../app.state';
 import { LOAD_YOUTUBE_ITEMS, SORT_YOUTUBE_ITEMS } from '../actions/youtube-items.actions';
-import { ADD_CUSTOM_ITEM } from '../actions/custom-items.actions';
+import { ADD_CUSTOM_ITEM, DELETE_CUSTOM_ITEM } from '../actions/custom-items.actions';
 
 export const initialState: AppState = {
   videoItems: {},
@@ -31,6 +31,13 @@ export const itemsReducer = createReducer(
     return {
       ...state,
       customItems: { ...state.customItems, [customItem.id as string]: customItem },
+    };
+  }),
+  on(DELETE_CUSTOM_ITEM, (state, { id }) => {
+    const { [id]: itemToDelete, ...items } = state.customItems;
+    return {
+      ...state,
+      customItems: items,
     };
   })
 );

@@ -1,4 +1,5 @@
 export interface SearchItem {
+  isCustom?: boolean;
   kind: string;
   etag: string;
   id:
