@@ -9,3 +9,12 @@ export const SEARCH_YOUTUBE_ITEMS_BY_QUERY = createAction(
 export const SORT_YOUTUBE_ITEMS = createAction('[YOUTUBE] Sort Youtube Items', props<{ youtubeItems: SearchItem[] }>());
 
 export const LOAD_YOUTUBE_ITEMS = createAction('[YOUTUBE] Load Youtube Items', props<{ youtubeItems: SearchItem[] }>());
+
+export const LOAD_NEXT_YOUTUBE_PAGE = createAction('[YOUTUBE] Load Next Youtube Page');
+
+export const LOAD_PREV_YOUTUBE_PAGE = createAction('[YOUTUBE] Load Prev Youtube Page');
+
+export const SET_PAGE_TOKENS = createAction(
+  '[YOUTUBE] Set Page Tokens',
+  props<{ nextPageToken: string; prevPageToken: string }>()
+);

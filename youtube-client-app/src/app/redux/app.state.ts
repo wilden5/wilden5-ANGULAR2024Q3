@@ -5,4 +5,6 @@ export interface AppState {
   readonly customItems: { [id: string]: SearchItem };
   readonly videoListIds: string[];
   readonly favoriteListIds: string[];
+  readonly nextPageToken: string;
+  readonly prevPageToken: string;
 }

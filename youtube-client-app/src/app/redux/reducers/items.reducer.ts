@@ -1,6 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { AppState } from '../app.state';
-import { LOAD_YOUTUBE_ITEMS, SORT_YOUTUBE_ITEMS } from '../actions/youtube-items.actions';
+import { LOAD_YOUTUBE_ITEMS, SET_PAGE_TOKENS, SORT_YOUTUBE_ITEMS } from '../actions/youtube-items.actions';
 import { ADD_CUSTOM_ITEM, DELETE_CUSTOM_ITEM } from '../actions/custom-items.actions';
 
 export const initialState: AppState = {
@@ -8,6 +8,8 @@ export const initialState: AppState = {
   customItems: {},
   videoListIds: [],
   favoriteListIds: [],
+  nextPageToken: '',
+  prevPageToken: '',
 };
 
 export const itemsReducer = createReducer(
@@ -39,5 +41,10 @@ export const itemsReducer = createReducer(
       ...state,
       customItems: items,
     };
-  })
+  }),
+  on(SET_PAGE_TOKENS, (state, { nextPageToken, prevPageToken }) => ({
+    ...state,
+    nextPageToken,
+    prevPageToken,
+  }))
 );

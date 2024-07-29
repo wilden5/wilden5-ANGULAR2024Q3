@@ -4,7 +4,11 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Store } from '@ngrx/store';
 import { SearchService } from '../../services/search.service';
 import { FilterService } from '../../services/filter.service';
-import { SEARCH_YOUTUBE_ITEMS_BY_QUERY } from '../../../redux/actions/youtube-items.actions';
+import {
+  LOAD_NEXT_YOUTUBE_PAGE,
+  LOAD_PREV_YOUTUBE_PAGE,
+  SEARCH_YOUTUBE_ITEMS_BY_QUERY,
+} from '../../../redux/actions/youtube-items.actions';
 import { selectAllItems } from '../../../redux/selectors/items.selector';
 
 @Component({
@@ -32,5 +36,13 @@ export class SearchResultsComponent implements OnInit {
       .subscribe((searchQuery) => {
         this.store.dispatch(SEARCH_YOUTUBE_ITEMS_BY_QUERY({ searchQuery }));
       });
+  }
+
+  onPrevButton(): void {
+    this.store.dispatch(LOAD_PREV_YOUTUBE_PAGE());
+  }
+
+  onNextButton(): void {
+    this.store.dispatch(LOAD_NEXT_YOUTUBE_PAGE());
   }
 }

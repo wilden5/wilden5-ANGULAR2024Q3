@@ -1,4 +1,8 @@
 <app-filter *ngIf="filterService.isFilterMenu"></app-filter>
+<div class="page-buttons">
+  <app-custom-button (buttonClickEvent)="onPrevButton()">Prev Page</app-custom-button>
+  <app-custom-button (buttonClickEvent)="onNextButton()">Next Page</app-custom-button>
+</div>
 <ng-container *ngFor="let searchItem of this.store.select(selectAllItems) | async">
   <app-search-item [searchItem]="searchItem"></app-search-item>
 </ng-container>

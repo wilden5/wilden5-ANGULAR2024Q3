@@ -28,3 +28,11 @@ export const selectYoutubeItemsSortedByDateDesc = createSelector(selectVideoItem
     (a, b) => new Date(b.snippet.publishedAt).getTime() - new Date(a.snippet.publishedAt).getTime()
   );
 });
+
+export const selectPrevPageToken = createSelector(selectAppState, (state) => {
+  return state.prevPageToken;
+});
+
+export const selectNextPageToken = createSelector(selectAppState, (state) => {
+  return state.nextPageToken;
+});
