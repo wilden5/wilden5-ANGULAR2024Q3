@@ -1,1 +1,3 @@
-<p>favorite-results works!</p>
+<ng-container *ngFor="let searchItem of this.store.select(selectFavoriteItems) | async">
+  <app-search-item [searchItem]="searchItem"></app-search-item>
+</ng-container>

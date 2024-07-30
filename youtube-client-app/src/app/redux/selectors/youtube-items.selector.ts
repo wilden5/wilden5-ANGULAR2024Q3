@@ -36,3 +36,11 @@ export const selectPrevPageToken = createSelector(selectAppState, (state) => {
 export const selectNextPageToken = createSelector(selectAppState, (state) => {
   return state.nextPageToken;
 });
+
+export const selectFavoriteListIds = createSelector(selectAppState, (state) => {
+  return state.favoriteListIds;
+});
+
+export const selectFavoriteItems = createSelector(selectVideoItems, selectFavoriteListIds, (state, ids) => {
+  return [...Object.values(state)].filter((item) => ids.includes(item.id as string));
+});

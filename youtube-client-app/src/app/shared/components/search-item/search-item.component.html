@@ -18,6 +18,9 @@
     <mat-card-title class="search-item-title">{{searchItem.snippet.title | slice:0:50}}</mat-card-title>
     <div class="item-buttons">
       <app-custom-button [routerLink]="['item/', searchItem.id]" class="search-item-button">...more</app-custom-button>
+      <app-custom-button *ngIf="!searchItem.isCustom" (buttonClickEvent)="onFavoriteClick(searchItem)">
+        <mat-icon>favorite_border</mat-icon>
+      </app-custom-button>
       <app-custom-button
         *ngIf="searchItem.isCustom"
         (buttonClickEvent)="onDeleteCustomItem(searchItem)"

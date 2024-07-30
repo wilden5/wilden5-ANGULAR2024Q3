@@ -18,3 +18,10 @@ export const SET_PAGE_TOKENS = createAction(
   '[YOUTUBE] Set Page Tokens',
   props<{ nextPageToken: string; prevPageToken: string }>()
 );
+
+export const ADD_ITEM_TO_FAVORITE_LIST = createAction('[YOUTUBE] Add Item To Favorite List', props<{ id: string }>());
+
+export const REMOVE_ITEM_FROM_FAVORITE_LIST = createAction(
+  '[YOUTUBE] Remove Item From Favorite List',
+  props<{ id: string }>()
+);
