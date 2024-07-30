@@ -15,6 +15,11 @@ const routes: Routes = [
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
+  {
+    path: 'favorite',
+    loadChildren: () => import('./favorite/favorite.module').then((m) => m.FavoriteModule),
+    canActivate: [authGuard],
+  },
   { path: '**', component: PageNotFoundComponent },
 ];
 
