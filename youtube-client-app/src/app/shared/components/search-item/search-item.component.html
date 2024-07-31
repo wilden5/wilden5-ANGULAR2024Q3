@@ -19,13 +19,15 @@
     <div class="item-buttons">
       <app-custom-button [routerLink]="['item/', searchItem.id]" class="search-item-button">...more</app-custom-button>
       <app-custom-button *ngIf="!searchItem.isCustom" (buttonClickEvent)="onFavoriteClick(searchItem)">
-        <mat-icon>favorite_border</mat-icon>
+        <mat-icon *ngIf="updateIcon(searchItem) | async; else notFavorite">favorite</mat-icon>
+        <ng-template #notFavorite>
+          <mat-icon>favorite_border</mat-icon>
+        </ng-template>
       </app-custom-button>
       <app-custom-button
         *ngIf="searchItem.isCustom"
         (buttonClickEvent)="onDeleteCustomItem(searchItem)"
         class="delete-button">
-        <mat-icon>delete_forever</mat-icon>
       </app-custom-button>
     </div>
     <div [appColoredBorder]="searchItem.snippet.publishedAt" class="colored-border"></div>

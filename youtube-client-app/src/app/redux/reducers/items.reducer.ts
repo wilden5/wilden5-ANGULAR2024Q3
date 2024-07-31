@@ -3,6 +3,7 @@ import { AppState } from '../app.state';
 import {
   ADD_ITEM_TO_FAVORITE_LIST,
   LOAD_YOUTUBE_ITEMS,
+  REMOVE_ITEM_FROM_FAVORITE_LIST,
   SET_PAGE_TOKENS,
   SORT_YOUTUBE_ITEMS,
 } from '../actions/youtube-items.actions';
@@ -53,9 +54,18 @@ export const itemsReducer = createReducer(
     prevPageToken,
   })),
   on(ADD_ITEM_TO_FAVORITE_LIST, (state, { id }) => {
+    if (state.favoriteListIds.includes(id)) {
+      return { ...state };
+    }
     return {
       ...state,
       favoriteListIds: [...state.favoriteListIds, id],
+    };
+  }),
+  on(REMOVE_ITEM_FROM_FAVORITE_LIST, (state, { id }) => {
+    return {
+      ...state,
+      favoriteListIds: state.favoriteListIds.filter((itemId) => itemId !== id),
     };
   })
 );

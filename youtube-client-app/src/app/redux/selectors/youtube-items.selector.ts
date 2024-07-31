@@ -44,3 +44,6 @@ export const selectFavoriteListIds = createSelector(selectAppState, (state) => {
 export const selectFavoriteItems = createSelector(selectVideoItems, selectFavoriteListIds, (state, ids) => {
   return [...Object.values(state)].filter((item) => ids.includes(item.id as string));
 });
+
+export const selectSpecificFavoriteItem = (id: string) =>
+  createSelector(selectFavoriteListIds, (favoriteList) => favoriteList.includes(id));
