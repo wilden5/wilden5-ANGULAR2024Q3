@@ -19,7 +19,7 @@
     <div class="item-buttons">
       <app-custom-button [routerLink]="['item/', searchItem.id]" class="search-item-button">...more</app-custom-button>
       <app-custom-button *ngIf="!searchItem.isCustom" (buttonClickEvent)="onFavoriteClick(searchItem)">
-        <mat-icon *ngIf="updateIcon(searchItem) | async; else notFavorite">favorite</mat-icon>
+        <mat-icon *ngIf="updateIcon(searchItem)(); else notFavorite">favorite</mat-icon>
         <ng-template #notFavorite>
           <mat-icon>favorite_border</mat-icon>
         </ng-template>
