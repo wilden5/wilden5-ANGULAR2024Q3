@@ -46,3 +46,31 @@ export function createNewCustomItem(formGroup: FormGroup): SearchItem {
     },
   };
 }
+
+export function createMockItem(title: string): SearchItem {
+  return {
+    etag: '',
+    id: '',
+    kind: '',
+    snippet: {
+      categoryId: '',
+      channelId: '',
+      channelTitle: '',
+      defaultAudioLanguage: '',
+      description: '',
+      liveBroadcastContent: '',
+      localized: { description: '', title: '' },
+      publishedAt: '',
+      tags: [],
+      thumbnails: {
+        default: { url: '', height: 1, width: 1 },
+        high: { url: '', height: 1, width: 1 },
+        maxres: { url: '', height: 1, width: 1 },
+        medium: { url: '', height: 1, width: 1 },
+        standard: { url: '', height: 1, width: 1 },
+      },
+      title,
+    },
+    statistics: { commentCount: '', dislikeCount: '', favoriteCount: '', likeCount: '', viewCount: '' },
+  };
+}
