@@ -1,15 +1,20 @@
-<form class="login-form">
+<form class="login-form" [formGroup]="loginForm">
   <h2 class="form-header">Login:</h2>
   <mat-form-field class="username-input">
     <mat-label>Your Login</mat-label>
-    <input required matInput #username />
+    <input matInput formControlName="username" />
+    <mat-error>{{ getUsernameErrorMessage() }}</mat-error>
   </mat-form-field>
   <mat-form-field class="password-input">
     <mat-label>Your Password</mat-label>
-    <input required matInput #password />
+    <input matInput formControlName="password" />
+    <mat-error>
+      <span *ngIf="!loginForm.get('password')?.hasError('required')">Your password isn't strong enough:</span>
+      {{ getPasswordErrorMessage() }}</mat-error
+    >
   </mat-form-field>
   <div class="form-buttons">
-    <app-custom-button (buttonClickEvent)="onLoginClick(username.value, password.value)">Login</app-custom-button>
+    <app-custom-button (buttonClickEvent)="onLoginClick()" [disabled]="loginForm.invalid">Login</app-custom-button>
     <app-custom-button>Registration</app-custom-button>
   </div>
 </form>

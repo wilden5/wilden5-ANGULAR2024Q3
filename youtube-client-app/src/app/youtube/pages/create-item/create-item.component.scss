@@ -1,0 +1,32 @@
+:host {
+  display: flex;
+  justify-content: center;
+}
+
+.create-item-form {
+  display: flex;
+  flex-direction: column;
+  width: 50rem;
+  background-color: #ecd7d7;
+  padding: 3rem;
+  border-radius: 1rem;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
+.tags-wrapper {
+  margin-bottom: 2rem;
+}
+
+.form-header {
+  font-size: 4rem;
+}
+
+.tag {
+  width: 100%;
+}
+
+.form-buttons {
+  display: flex;
+  justify-content: space-between;
+}
