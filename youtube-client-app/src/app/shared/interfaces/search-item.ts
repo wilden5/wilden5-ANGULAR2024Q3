@@ -1,22 +1,34 @@
 export interface SearchItem {
   kind: string;
   etag: string;
-  id: {
-    kind: string;
-    videoId: string;
-  };
+  id:
+    | string
+    | {
+        kind: string;
+        videoId: string;
+      };
   snippet: {
     publishedAt: string;
     channelId: string;
     title: string;
     description: string;
     thumbnails: {
-      standard: {
-        url: string;
-        width: number;
-        height: number;
-      };
+      default: ItemThumbnail;
+      medium: ItemThumbnail;
+      high: ItemThumbnail;
+      standard: ItemThumbnail;
+      maxres: ItemThumbnail;
     };
+    channelTitle: string;
+    tags: string[];
+    categoryId: string;
+    liveBroadcastContent: string;
+    defaultLanguage?: string;
+    localized: {
+      title: string;
+      description: string;
+    };
+    defaultAudioLanguage: string;
   };
   statistics: {
     viewCount: string;
@@ -25,4 +37,10 @@ export interface SearchItem {
     favoriteCount: string;
     commentCount: string;
   };
+}
+
+interface ItemThumbnail {
+  url: string;
+  width: number;
+  height: number;
 }

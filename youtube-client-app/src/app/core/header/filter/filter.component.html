@@ -1,1 +1,7 @@
-<p>filter works!</p>
+<div>Sorting by:</div>
+<app-custom-button (buttonClickEvent)="searchService.performSortByDate()">date</app-custom-button>
+<app-custom-button (buttonClickEvent)="searchService.performSortByViews()">count of views</app-custom-button>
+<mat-form-field>
+  <mat-label>by word or sentence</mat-label>
+  <input matInput #filterQuery (keyup)="searchService.performFilterByKeyword(filterQuery.value)" />
+</mat-form-field>

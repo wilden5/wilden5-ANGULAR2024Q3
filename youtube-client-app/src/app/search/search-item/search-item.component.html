@@ -1,1 +1,22 @@
-<p>search-item works!</p>
+<ng-container *ngIf="searchItem">
+  <mat-card class="search-item-card">
+    <img class="search-item-img" src="{{searchItem.snippet.thumbnails.medium.url}}" alt="item-img" />
+    <div class="search-item-stat-container">
+      <span class="search-item-stat">
+        <mat-icon>remove_red_eye</mat-icon>
+        {{searchItem.statistics.viewCount}}
+      </span>
+      <span class="search-item-stat">
+        <mat-icon>thumb_up</mat-icon>
+        {{searchItem.statistics.likeCount}}
+      </span>
+      <span class="search-item-stat">
+        <mat-icon>comment</mat-icon>
+        {{searchItem.statistics.commentCount}}
+      </span>
+    </div>
+    <mat-card-title class="search-item-title">{{searchItem.snippet.title | slice:0:57}}</mat-card-title>
+    <app-custom-button class="search-item-button">...more</app-custom-button>
+    <div [appColoredBorder]="searchItem.snippet.publishedAt" class="colored-border"></div>
+  </mat-card>
+</ng-container>
