@@ -1,6 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component, computed, Input, Signal } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { first, map, Observable } from 'rxjs';
+import { first } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { SearchItem } from '../../../youtube/models/search-item';
 import { DELETE_CUSTOM_ITEM } from '../../../redux/actions/custom-items.actions';
 import {
@@ -17,10 +18,10 @@ import { selectFavoriteListIds, selectSpecificFavoriteItem } from '../../../redu
 export class SearchItemComponent {
   @Input() searchItem!: SearchItem;
 
-  favoriteListIds$: Observable<string[]>;
+  favoriteListIds: Signal<string[]>;
 
   constructor(private store: Store) {
-    this.favoriteListIds$ = this.store.select(selectFavoriteListIds);
+    this.favoriteListIds = toSignal(this.store.select(selectFavoriteListIds), { initialValue: [] });
   }
 
   onDeleteCustomItem(searchItem: SearchItem): void {
@@ -42,8 +43,8 @@ export class SearchItemComponent {
       });
   }
 
-  updateIcon(searchItem: SearchItem): Observable<boolean> {
+  updateIcon(searchItem: SearchItem): Signal<boolean> {
     const id = searchItem.id as string;
-    return this.favoriteListIds$.pipe(map((favoriteListIds) => favoriteListIds.includes(id)));
+    return computed(() => this.favoriteListIds().includes(id));
   }
 }
