@@ -19,6 +19,9 @@
       [routerLink]="['search','create-item']">
       <mat-icon class="button-icon">add_circle</mat-icon>
     </app-custom-button>
+    <app-custom-button class="favorite-button header-button" [buttonHeightREM]="5.5" [routerLink]="['favorite']">
+      <mat-icon class="button-icon">favorite</mat-icon>
+    </app-custom-button>
     <app-custom-button
       *ngIf="!loginService.isLoggedIn()"
       [routerLink]="['/auth']"

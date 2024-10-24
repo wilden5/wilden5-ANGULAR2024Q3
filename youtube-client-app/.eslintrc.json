@@ -17,9 +17,12 @@
         "plugin:@angular-eslint/template/process-inline-templates",
         "plugin:prettier/recommended"
       ],
-      "parserOptions": { "project": ["tsconfig.json"] },
+      "parserOptions": {
+        "project": [
+          "tsconfig.json"
+        ]
+      },
       "rules": {
-        // ESLint rules
         "no-return-assign": "off",
         "import/prefer-default-export": "off",
         "class-methods-use-this": "off",
@@ -30,9 +33,7 @@
           "error",
           120
         ],
-        // TypeScript ESLint rules
         "@typescript-eslint/no-explicit-any": "error",
-        // Angular rules
         "@angular-eslint/directive-selector": [
           "error",
           {
@@ -61,6 +62,14 @@
         "plugin:prettier/recommended"
       ],
       "rules": {}
+    },
+    {
+      "files": [
+        "*.ts"
+      ],
+      "extends": [
+        "plugin:@ngrx/all"
+      ]
     }
   ]
 }

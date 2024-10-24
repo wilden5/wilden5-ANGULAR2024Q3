@@ -33,9 +33,11 @@
   padding: 1rem;
 }
 
-.search-item-button {
+.item-buttons {
+  display: flex;
   margin-top: auto;
   margin-bottom: 1rem;
+  gap: 1rem;
 }
 
 .colored-border {

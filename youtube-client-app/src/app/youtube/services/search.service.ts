@@ -1,30 +1,32 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, concatMap, map, Observable, of, tap, throwError } from 'rxjs';
+import { BehaviorSubject, catchError, concatMap, map, Observable, tap, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Store } from '@ngrx/store';
 import { SearchItem } from '../models/search-item';
 import { SearchResponse } from '../models/search-response';
+import { SET_PAGE_TOKENS } from '../../redux/actions/youtube-items.actions';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SearchService {
-  searchItems: Observable<SearchItem[]> = of([]);
-
-  filteredSearchItems: Observable<SearchItem[]> = of([]);
-
   searchQuery: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private store: Store
+  ) {}
 
-  performSearchByValue(value: string): Observable<SearchItem[]> {
-    return this.http.get<SearchResponse>(`search?maxResults=20&q=${value}`).pipe(
+  performSearchByValue(value: string, pageToken = ''): Observable<SearchItem[]> {
+    return this.http.get<SearchResponse>(`search?maxResults=20&q=${value}&pageToken=${pageToken}`).pipe(
+      tap((response) => {
+        this.store.dispatch(
+          SET_PAGE_TOKENS({ nextPageToken: response.nextPageToken, prevPageToken: response.prevPageToken || '' })
+        );
+      }),
       concatMap((response) => {
         const videoIds = response.items.map((item) => (item.id as { videoId: string }).videoId).join(',');
         return this.getYoutubeItemsByIds(videoIds);
-      }),
-      tap((data) => {
-        this.searchItems = of(data);
-        this.filteredSearchItems = this.searchItems;
       }),
       catchError((error) => {
         return throwError(() => error);
@@ -48,10 +50,5 @@ export class SearchService {
         return throwError(() => error);
       })
     );
-  }
-
-  // currently is not in use
-  selectItemById(id: string): Observable<SearchItem> {
-    return this.searchItems.pipe(map((result) => result.find((item) => item.id === id))) as Observable<SearchItem>;
   }
 }
