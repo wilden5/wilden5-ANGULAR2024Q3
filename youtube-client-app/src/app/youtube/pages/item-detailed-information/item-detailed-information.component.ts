@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { SearchItem } from '../../../shared/models/search-item';
+import { SearchItem } from '../../models/search-item';
 import { SearchService } from '../../services/search.service';
 
 @Component({
@@ -19,6 +19,6 @@ export class ItemDetailedInformationComponent implements OnInit {
 
   ngOnInit(): void {
     const itemId = this.activatedRoute.snapshot.params['id'];
-    this.searchItem = this.searchService.selectItemById(itemId);
+    this.searchItem = this.searchService.getSpecificYoutubeItemById(itemId);
   }
 }

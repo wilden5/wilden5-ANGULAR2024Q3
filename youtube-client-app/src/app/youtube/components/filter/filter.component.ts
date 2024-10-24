@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SearchService } from '../../services/search.service';
+import { FilterService } from '../../services/filter.service';
 
 @Component({
   selector: 'app-filter',
@@ -7,5 +7,5 @@ import { SearchService } from '../../services/search.service';
   styleUrls: ['./filter.component.scss'],
 })
 export class FilterComponent {
-  constructor(protected searchService: SearchService) {}
+  constructor(protected filterService: FilterService) {}
 }
